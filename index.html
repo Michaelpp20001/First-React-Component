@@ -8,26 +8,40 @@
   <!--For React we need React itself, React DOM & this case, React DOM factories-->
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <!--Without JSX/babel-->
   <script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+  <!--With JSX/babel-->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 
 <body>
     <div id="app"></div>
-  <script type="text/javascript">
+  <!-- Use without JSX/babel <script type="text/javascript"> -->
+    <script type="text/babel">
+    
   //create our component using class syntax
     class Pet extends React.Component {
         //return some html that we want to put in the DOM
         render() {
-            const h2 = ReactDOMFactories.h2(null, "Green Eyes");
-            const img = ReactDOMFactories.img({
-                src: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", 
-                alt: "random cat"
-            });
-            return ReactDOMFactories.div(null, h2, img);
+            return (
+                <div>
+                    <h2>Green Eyes</h2>
+                    <img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                         alt="random cat" />
+                </div>
+            )
+            // ONLY NEED FOR NON JSX?BABEL
+            // const h2 = ReactDOMFactories.h2(null, "Green Eyes");
+            // const img = ReactDOMFactories.img({
+            //     src: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", 
+            //     alt: "random cat"
+            // });
+            // return ReactDOMFactories.div(null, h2, img);
         }
     }
-    //tell React where, actually rendering our elements
-    ReactDOM.render(React.createElement(Pet), document.getElementById("app"));
+    //tell React where, actually rendering our elements non JSX
+    // ReactDOM.render(React.createElement(Pet), document.getElementById("app"));
+    ReactDOM.render(<Pet/>, document.getElementById("app"));
 </script>
    
 </body>
