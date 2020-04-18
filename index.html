@@ -21,12 +21,22 @@
     <script type="text/babel">
     
   //create our component using class syntax
+    class HobbyList extends React.Component {
+      render() {
+        const style = {fontSize: "1.5em"};
+        const hobbies = ["Look cute", "Pull all the chicks", "Sleep"];
+        return (
+          <ul>
+            {hobbies.map((h, i) => {
+                return <li key={i} style={style}>{h}</li>
+            })}
+          </ul>
+        );
+      }
+    }
     class Pet extends React.Component {
         //return some html that we want to put in the DOM
         render() {
-            //adding in-line styles, formatting style object in javascript
-            const liStyle = {fontSize: "1.5em"};
-            const hobbies = ["Look cute", "Pull all the chicks", "Sleep"];
             return (
                 // have to create className instead of class because babel doesnt know the difference between html and javascript
                 <div className="card">
@@ -34,11 +44,7 @@
                     <img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                          alt="random cat" />
                     <h5 style={{fontSize: "2em", margin: "2px"}}>Hobbies</h5>
-                        <ul>
-                          {hobbies.map((h, i) => {
-                            return <li key={i} style={liStyle}>{h}</li>
-                          })}
-                        </ul>
+                    <HobbyList />
                 </div>
             )
             // ONLY NEED FOR NON JSX?BABEL
